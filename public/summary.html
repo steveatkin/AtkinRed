@@ -29,21 +29,9 @@
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>Summary of Claims</h1>
+        <h1 id="header"></h1>
       </div>
-
-
-      <table data-toggle="table" data-url="http://atkinred.mybluemix.net/insurance/claims" data-height="299">
-        <thead>
-          <tr>
-            <th data-field="state" data-sortable="true">State</th>
-            <th data-field="claimType" data-sortable="true">Claim Type</th>
-            <th data-field="coverageType" data-sortable="true">Coverage Type</th>
-            <th data-field="numberOfClaims" data-sortable="true">Number of claims</th>
-            <th data-field="totalClaimsAmount" data-sortable="true">Total Claims Amount</th>
-          </tr>
-        </thead>
-      </table>
+      <table id="table"></table>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -55,6 +43,68 @@
     integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
     crossorigin="anonymous"></script>
 
+    <script>
 
+    $(document).ready(function () {
+      // Call globalization pipeline and load strings
+      var instance = "76312325045f8af942f379b801256feb";
+      var username = "a7398272673e70798cc87171b461aeaa";
+      var password = "IGLcPOsl/el0zhyEHvatOV3oA5PIqDCc";
+      var base = "https://gp-beta-rest.ng.bluemix.net/translate/rest/";
+      var language = navigator.language.substring(0,2);
+      var urlPipeline = base + instance + "/v2/bundles/" + "summary/" + language;
+
+      $.ajax({
+        type: "GET",
+        url: urlPipeline,
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
+        },
+        success: function(data) {
+            $("#header").text(data.resourceStrings.summary);
+
+            // Create the Bootstrap table
+            var clientId = '40924dbf-b311-4871-adac-8718e0251072';
+            var urlData = 'https://api.us.apiconnect.ibmcloud.com/atkinusibmcom-dev/production/v1/claims?client_id=' + clientId;
+            $('#table').bootstrapTable({
+                method: 'get',
+                url: urlData,
+                showColumns: true,
+                height: 400,
+                columns: [
+                  {
+                    field: 'state',
+                    title: data.resourceStrings.state,
+                    sortable: true
+                  },
+                  {
+                    field: 'claimType',
+                    title: data.resourceStrings.claimType,
+                    sortable: true
+                  },
+                  {
+                    field: 'coverageType',
+                    title: data.resourceStrings.coverageType,
+                    sortable: true
+                  },
+                  {
+                    field: 'numberOfClaims',
+                    title: data.resourceStrings.claimsNumber,
+                    sortable: true
+                  },
+                  {
+                    field: 'totalClaimsAmount',
+                    title: data.resourceStrings.claimsTotal,
+                    sortable: true
+                  }
+                ]
+            });
+        },
+        error: function(xhr) {
+            alert(xhr.status);
+        }
+      });
+    });
+    </script>
   </body>
 </html>
