@@ -29,31 +29,31 @@
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>Customer View</h1>
+        <h1 id="customer"></h1>
       </div>
 
       <form>
         <div class="form-group">
-          <label for="customer-id">Enter customer id:</label>
+          <label id="customer-id-message" for="customer-id"></label>
           <input type="text" class="form-control" id="customer-id">
         </div>
         <div class="form-group">
-          <label for="offering-message">Customer offer:</label>
+          <label id="offering-message-message" for="offering-message"></label>
           <input type="text" class="form-control" id="offering-message" disabled>
 
-          <label for="policy-type">Policy type:</label>
+          <label id="policy-type-message" for="policy-type"></label>
           <input type="text" class="form-control" id="policy-type" disabled>
 
-          <label for="number-of-policies">Number of policies:</label>
+          <label id="numbers-message" for="number-of-policies"></label>
           <input type="text" class="form-control" id="number-of-policies" disabled>
 
-          <label for="monthly-premium">Monthly premium:</label>
+          <label id="monthly-message" for="monthly-premium"></label>
           <input type="text" class="form-control" id="monthly-premium" disabled>
 
-          <label for="months-since-claim">Months since last claim:</label>
+          <label id="claim-message" for="months-since-claim"></label>
           <input type="text" class="form-control" id="months-since-claim" disabled>
         </div>
-        <button class="btn btn-primary" type="button" onclick="getCustomer()">Search</button>
+        <button id="search" class="btn btn-primary" type="button" onclick="getCustomer()"></button>
       </form>
 
 
@@ -72,9 +72,10 @@
       function getCustomer() {
         $.ajax({
           type: "GET",
-          url: "http://atkinred.mybluemix.net/insurance/policy",
+          url: "https://api.us.apiconnect.ibmcloud.com/atkinusibmcom-dev/production/v1/policy",
           data: {
-            "customer": $("#customer-id").val()
+            "customer": $("#customer-id").val(),
+            "client_id": "40924dbf-b311-4871-adac-8718e0251072"
           },
           success: function(data) {
               $("#offering-message").val(data.message);
@@ -88,6 +89,39 @@
           }
         });
       }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        // Call globalization pipeline and load strings
+        var instance = "76312325045f8af942f379b801256feb";
+        var username = "a7398272673e70798cc87171b461aeaa";
+        var password = "IGLcPOsl/el0zhyEHvatOV3oA5PIqDCc";
+        var base = "https://gp-beta-rest.ng.bluemix.net/translate/rest/";
+        var language = navigator.language.substring(0,2);
+        var urlPipeline = base + instance + "/v2/bundles/" + "customer/" + language;
+
+        $.ajax({
+          type: "GET",
+          url: urlPipeline,
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
+          },
+          success: function(data) {
+            $("#customer").text(data.resourceStrings.customer);
+            $("#customer-id-message").text(data.resourceStrings.customerId);
+            $("#offering-message-message").text(data.resourceStrings.offeringMessage);
+            $("#policy-type-message").text(data.resourceStrings.policyType);
+            $("#numbers-message").text(data.resourceStrings.numberPolicies);
+            $("#monthly-message").text(data.resourceStrings.monthlyPremium);
+            $("#claim-message").text(data.resourceStrings.monthsSinceClaim);
+            $("#search").text(data.resourceStrings.search);
+          },
+          error: function(xhr) {
+              alert(xhr.status);
+          }
+        });
+      });
     </script>
 
   </body>
