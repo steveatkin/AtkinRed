@@ -1,0 +1,8 @@
+{
+  "summary": "Claims summary view",
+  "state": "State",
+  "claimType": "Type of claim",
+  "coverageType": "Type of coverage",
+  "claimsNumber": "Number of claims",
+  "claimsTotal": "Total of paid claims"
+}
