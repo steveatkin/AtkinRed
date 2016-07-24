@@ -17,7 +17,8 @@
         "node-red-nodes-cf-sqldb-dashdb":"0.x",
         "node-red-contrib-httpauth": "^1.0",
         "node-red-node-swagger": "^0.1",
-        "node-red-node-openwhisk": "^0.1"
+        "node-red-contrib-openwhisk": "^1.0.5",
+        "node-red-node-watson": "^0.4.8"
     },
     "engines": {
         "node": "0.12.x"
