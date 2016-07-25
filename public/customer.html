@@ -32,6 +32,21 @@
         <h1 id="customer"></h1>
       </div>
 
+      <div>
+        <label id="insurance-agent"></label>
+        <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" id="insurance-query-button" onclick="askQuestion()"></button>
+        </span>
+        <input type="text" class="form-control" id="insurance-query">
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body" id="agent-response">
+          
+        </div>
+        </div>
+      </div>
+
       <form>
         <div class="form-group">
           <label id="customer-id-message" for="customer-id"></label>
@@ -89,6 +104,10 @@
           }
         });
       }
+
+      function askQuestion() {
+        alert("Clicked");
+      }
     </script>
 
     <script>
@@ -116,6 +135,9 @@
             $("#monthly-message").text(data.resourceStrings.monthlyPremium);
             $("#claim-message").text(data.resourceStrings.monthsSinceClaim);
             $("#search").text(data.resourceStrings.search);
+            $("#insurance-agent").text(data.resourceStrings.insuranceAgent);
+            $("#insurance-query-button").text(data.resourceStrings.go);
+
           },
           error: function(xhr) {
               alert(xhr.status);

@@ -6,5 +6,7 @@
   "numberPolicies": "Number of policies:",
   "monthlyPremium": "Monthly premium:",
   "monthsSinceClaim": "Months since last claim:",
-  "search": "Search"
+  "search": "Search",
+  "insuranceAgent": "Ask your agent",
+  "go": "Go!"
 }
