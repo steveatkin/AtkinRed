@@ -42,7 +42,6 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-body" id="agent-response">
-          
         </div>
         </div>
       </div>
@@ -83,7 +82,10 @@
     integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
     crossorigin="anonymous"></script>
 
+    <script src="js/api.js"></script>
+
     <script>
+
       function getCustomer() {
         $.ajax({
           type: "GET",
@@ -106,8 +108,18 @@
       }
 
       function askQuestion() {
-        alert("Clicked");
+        // Retrieve the context from the previous server response
+        var context;
+        var latestResponse = Api.getResponsePayload();
+        if (latestResponse) {
+          context = latestResponse.context;
+        }
+
+        // Send the user message
+        Api.sendRequest($("#insurance-query").val(), context);
+        $("#insurance-query").val('');
       }
+
     </script>
 
     <script>
@@ -143,7 +155,17 @@
               alert(xhr.status);
           }
         });
+
+        var currentResponsePayloadSetter = Api.setResponsePayload;
+        Api.setResponsePayload = function(newPayloadStr) {
+          currentResponsePayloadSetter.call(Api, newPayloadStr);
+          var data = JSON.parse(newPayloadStr);
+          $("#agent-response").text(data.output.text);
+        };
+
+        Api.sendRequest( '', null );
       });
+
     </script>
 
   </body>
