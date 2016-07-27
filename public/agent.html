@@ -32,15 +32,26 @@
         <h1 id="customer"></h1>
       </div>
 
+      <div>
+        <label id="insurance-agent"></label>
+        <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" id="insurance-query-button" onclick="askQuestion()"></button>
+        </span>
+        <input type="text" class="form-control" id="insurance-query">
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body" id="agent-response">
+        </div>
+        </div>
+      </div>
+
       <form>
         <div class="form-group">
           <label id="customer-id-message" for="customer-id"></label>
           <input type="text" class="form-control" id="customer-id">
         </div>
         <div class="form-group">
-          <label id="offering-message-message" for="offering-message"></label>
-          <input type="text" class="form-control" id="offering-message" disabled>
-
           <label id="policy-type-message" for="policy-type"></label>
           <input type="text" class="form-control" id="policy-type" disabled>
 
@@ -53,7 +64,6 @@
           <label id="claim-message" for="months-since-claim"></label>
           <input type="text" class="form-control" id="months-since-claim" disabled>
         </div>
-        <button id="search" class="btn btn-primary" type="button" onclick="getCustomer()"></button>
       </form>
 
 
@@ -68,13 +78,16 @@
     integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
     crossorigin="anonymous"></script>
 
+    <script src="js/api.js"></script>
+
     <script>
+
       function getCustomer() {
         $.ajax({
           type: "GET",
           url: "https://api.us.apiconnect.ibmcloud.com/atkinusibmcom-dev/production/v1/policy",
           data: {
-            "customer": $("#customer-id").val(),
+            "customer":  Api.getResponsePayload().context.claim,
             "client_id": "520dd2ab-feef-41cb-9831-ce69e653af95"
           },
           success: function(data) {
@@ -89,6 +102,20 @@
           }
         });
       }
+
+      function askQuestion() {
+        // Retrieve the context from the previous server response
+        var context;
+        var latestResponse = Api.getResponsePayload();
+        if (latestResponse) {
+          context = latestResponse.context;
+        }
+
+        // Send the user message
+        Api.sendRequest($("#insurance-query").val(), context);
+        $("#insurance-query").val('');
+      }
+
     </script>
 
     <script>
@@ -99,7 +126,7 @@
         var password = "i361I9qLOlRZQ7/8n0Z8hY5Czqqf8fZn";
         var base = "https://gp-rest.ng.bluemix.net/translate/rest/";
         var language = navigator.language.substring(0,2);
-        var urlPipeline = base + instance + "/v2/bundles/" + "customer/" + language;
+        var urlPipeline = base + instance + "/v2/bundles/" + "agent/" + language;
 
         $.ajax({
           type: "GET",
@@ -110,12 +137,10 @@
           success: function(data) {
             $("#customer").text(data.resourceStrings.customer);
             $("#customer-id-message").text(data.resourceStrings.customerId);
-            $("#offering-message-message").text(data.resourceStrings.offeringMessage);
             $("#policy-type-message").text(data.resourceStrings.policyType);
             $("#numbers-message").text(data.resourceStrings.numberPolicies);
             $("#monthly-message").text(data.resourceStrings.monthlyPremium);
             $("#claim-message").text(data.resourceStrings.monthsSinceClaim);
-            $("#search").text(data.resourceStrings.search);
             $("#insurance-agent").text(data.resourceStrings.insuranceAgent);
             $("#insurance-query-button").text(data.resourceStrings.go);
 
@@ -124,7 +149,24 @@
               alert(xhr.status);
           }
         });
+
+        var currentResponsePayloadSetter = Api.setResponsePayload;
+        Api.setResponsePayload = function(newPayloadStr) {
+          currentResponsePayloadSetter.call(Api, newPayloadStr);
+          console.log("Received: " + new PayloadStr);
+          var data = JSON.parse(newPayloadStr);
+          $("#agent-response").text(data.output.text);
+
+          if(data.context.claim && data.context.verified === true) {
+            console.log("Getting customer: " + data.context.claim);
+            getCustomer();
+          }
+
+        };
+
+        Api.sendRequest( '', null );
       });
+
     </script>
 
   </body>
