@@ -57,7 +57,7 @@ var Api = (function() {
       Api.setRequestPayload(params);
     }
 
-    console.log(params);
+    console.log("Sending: " + params);
     // Send request
     http.send(params);
   }

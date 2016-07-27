@@ -160,6 +160,7 @@
         Api.setResponsePayload = function(newPayloadStr) {
           currentResponsePayloadSetter.call(Api, newPayloadStr);
           var data = JSON.parse(newPayloadStr);
+          console.log("Received: " + data);
           $("#agent-response").text(data.output.text);
         };
 
