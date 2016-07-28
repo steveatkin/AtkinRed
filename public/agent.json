@@ -1,6 +1,5 @@
 {
   "customer": "Customer view",
-  "customerId": "Enter customer id:",
   "policyType": "Policy type:",
   "numberPolicies": "Number of policies:",
   "monthlyPremium": "Monthly premium:",

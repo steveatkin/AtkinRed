@@ -48,10 +48,6 @@
 
       <form>
         <div class="form-group">
-          <label id="customer-id-message" for="customer-id"></label>
-          <input type="text" class="form-control" id="customer-id">
-        </div>
-        <div class="form-group">
           <label id="policy-type-message" for="policy-type"></label>
           <input type="text" class="form-control" id="policy-type" disabled>
 
@@ -91,7 +87,6 @@
             "client_id": "520dd2ab-feef-41cb-9831-ce69e653af95"
           },
           success: function(data) {
-              $("#offering-message").val(data.message);
               $("#policy-type").val(data.policyType);
               $("#months-since-claim").val(data.monthsSinceLastClaim);
               $("#number-of-policies").val(data.numberOfPolicies);
@@ -136,7 +131,6 @@
           },
           success: function(data) {
             $("#customer").text(data.resourceStrings.customer);
-            $("#customer-id-message").text(data.resourceStrings.customerId);
             $("#policy-type-message").text(data.resourceStrings.policyType);
             $("#numbers-message").text(data.resourceStrings.numberPolicies);
             $("#monthly-message").text(data.resourceStrings.monthlyPremium);
@@ -157,8 +151,8 @@
           var data = JSON.parse(newPayloadStr);
           $("#agent-response").text(data.output.text);
 
-          if(data.context.claim && data.context.verified === true) {
-            console.log("Getting customer: " + data.context.claim);
+          if(data.context.policy && data.context.verified === true) {
+            console.log("Getting customer: " + data.context.policy);
             getCustomer();
           }
 
