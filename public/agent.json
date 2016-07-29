@@ -5,5 +5,8 @@
   "monthlyPremium": "Monthly premium:",
   "monthsSinceClaim": "Months since last claim:",
   "insuranceAgent": "Ask your agent",
-  "go": "Go!"
+  "go": "Go!",
+  "policy": "Policy",
+  "claims": "Claims",
+  "offers": "Offers"
 }
