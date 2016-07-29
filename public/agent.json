@@ -1,5 +1,6 @@
 {
-  "customer": "Customer view",
+  "title": "Virtual Insurance Agent",
+  "about": "Let the virtual agent help you learn more about your insurance coverage and needs.",
   "policyType": "Policy type:",
   "numberPolicies": "Number of policies:",
   "monthlyPremium": "Monthly premium:",

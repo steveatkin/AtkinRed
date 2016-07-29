@@ -37,15 +37,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand">Insurance Agent</a>
+        
       </div>
     </div>
   </nav>
 
   <div class="container">
     <div class="jumbotron">
-      <h1>Virtual Insurance Agent</h1>
-      <p>Let the virtual agent help you learn more about your insurance coverage and needs.</p>
+      <h1 id="title"></h1>
+      <p id="about"></p>
     </div>
   </div>
 
@@ -66,9 +66,9 @@
 
   <div class="container">
     <ul class="nav nav-tabs">
-      <li id="poliy-tab" class="active"><a data-toggle="tab" href="#policy"></a></li>
-      <li id="claims-tab"><a data-toggle="tab" href="#claims"></a></li>
-      <li id="offers-tab"><a data-toggle="tab" href="#offers"></a></li>
+      <li class="active"><a id="policy-tab" data-toggle="tab" href="#policy"></a></li>
+      <li><a id="claims-tab" data-toggle="tab" href="#claims"></a></li>
+      <li><a id="offers-tab" data-toggle="tab" href="#offers"></a></li>
     </ul>
 
     <div class="tab-content">
@@ -97,12 +97,7 @@
         <p>Some content in menu 2.</p>
       </div>
     </div>
-
-
-
   </div>
-
-
 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -169,7 +164,8 @@
             xhr.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
           },
           success: function(data) {
-            $("#customer").text(data.resourceStrings.customer);
+            $("#title").text(data.resourceStrings.title);
+            $("#about").text(data.resourceStrings.about);
             $("#policy-type-message").text(data.resourceStrings.policyType);
             $("#numbers-message").text(data.resourceStrings.numberPolicies);
             $("#monthly-message").text(data.resourceStrings.monthlyPremium);
