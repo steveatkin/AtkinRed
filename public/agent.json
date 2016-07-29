@@ -9,5 +9,8 @@
   "go": "Go!",
   "policy": "Policy",
   "claims": "Claims",
-  "offers": "Offers"
+  "offers": "Offers",
+  "coverage": "Coverage:",
+  "effective": "Effective to date:",
+  "inception": "Months since policy started:"
 }

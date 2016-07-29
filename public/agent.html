@@ -54,7 +54,8 @@
 
   <div class="input-group"> 
       <span class="input-group-btn">
-      <button class="btn btn-default" type="button" id="insurance-query-button" onclick="askQuestion()"></button>
+      <button class="btn btn-default" type="button" id="insurance-query-button" onclick="askQuestion()">
+      </button>
       </span>
       <input type="text" class="form-control" id="insurance-query">
     </div>
@@ -79,6 +80,16 @@
             <input type="text" class="form-control" id="policy-type" disabled>
             <label id="numbers-message" for="number-of-policies"></label>
             <input type="text" class="form-control" id="number-of-policies" disabled>
+
+            <label id="coverage-message" for="coverage"></label>
+            <input type="text" class="form-control" id="coverage" disabled>
+
+            <label id="effective-message" for="effective"></label>
+            <input type="text" class="form-control" id="effective" disabled>
+
+            <label id="inception-message" for="policy-months"></label>
+            <input type="text" class="form-control" id="policy-months" disabled>
+
             <label id="monthly-message" for="monthly-premium"></label>
             <input type="text" class="form-control" id="monthly-premium" disabled>
           </div>
@@ -124,7 +135,10 @@
               $("#policy-type").val(data.policyType);
               $("#months-since-claim").val(data.monthsSinceLastClaim);
               $("#number-of-policies").val(data.numberOfPolicies);
+              $("#coverage").val(data.coverage);
+              $("#effective").val(data.effectiveToDate);
               $("#monthly-premium").val(data.monthlyPremiumAuto);
+              $("#policy-months").val(data.monthsSincePolicyInception);
           },
           error: function(xhr) {
               alert(xhr.status);
@@ -170,6 +184,9 @@
             $("#numbers-message").text(data.resourceStrings.numberPolicies);
             $("#monthly-message").text(data.resourceStrings.monthlyPremium);
             $("#claim-message").text(data.resourceStrings.monthsSinceClaim);
+            $("#coverage-message").text(data.resourceStrings.coverage);
+            $("#effective-message").text(data.resourceStrings.effective);
+            $("#inception-message").text(data.resourceStrings.inception);
             $("#insurance-agent").text(data.resourceStrings.insuranceAgent);
             $("#insurance-query-button").text(data.resourceStrings.go);
             $("#policy-tab").text(data.resourceStrings.policy);
