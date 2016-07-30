@@ -80,16 +80,12 @@
             <input type="text" class="form-control" id="policy-type" disabled>
             <label id="numbers-message" for="number-of-policies"></label>
             <input type="text" class="form-control" id="number-of-policies" disabled>
-
             <label id="coverage-message" for="coverage"></label>
             <input type="text" class="form-control" id="coverage" disabled>
-
             <label id="effective-message" for="effective"></label>
             <input type="text" class="form-control" id="effective" disabled>
-
             <label id="inception-message" for="policy-months"></label>
             <input type="text" class="form-control" id="policy-months" disabled>
-
             <label id="monthly-message" for="monthly-premium"></label>
             <input type="text" class="form-control" id="monthly-premium" disabled>
           </div>
@@ -100,6 +96,10 @@
           <div class="form-group">
             <label id="claim-message" for="months-since-claim"></label>
             <input type="text" class="form-control" id="months-since-claim" disabled>
+            <label id="claim-reason" for="reason"></label>
+            <input type="text" class="form-control" id="reason" disabled>
+            <label id="claim-amount" for="amount"></label>
+            <input type="text" class="form-control" id="amount" disabled>
           </div>
         </form>
       </div>
@@ -139,6 +139,8 @@
               $("#effective").val(data.effectiveToDate);
               $("#monthly-premium").val(data.monthlyPremiumAuto);
               $("#policy-months").val(data.monthsSincePolicyInception);
+              $("#reason").val(data.claimReason);
+              $("#amount").val(data.totalClaimAmount);
           },
           error: function(xhr) {
               alert(xhr.status);
@@ -189,6 +191,8 @@
             $("#inception-message").text(data.resourceStrings.inception);
             $("#insurance-agent").text(data.resourceStrings.insuranceAgent);
             $("#insurance-query-button").text(data.resourceStrings.go);
+            $("#claim-reason").text(data.resourceStrings.reason);
+            $("#claim-amount").text(data.resourceStrings.amount);
             $("#policy-tab").text(data.resourceStrings.policy);
             $("#claims-tab").text(data.resourceStrings.claims);
             $("#offers-tab").text(data.resourceStrings.offers);

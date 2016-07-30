@@ -12,5 +12,7 @@
   "offers": "Offers",
   "coverage": "Coverage:",
   "effective": "Effective to date:",
-  "inception": "Months since policy started:"
+  "inception": "Months since policy started:",
+  "reason": "Reason:",
+  "amount": "Total claim:"
 }
