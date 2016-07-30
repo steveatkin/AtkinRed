@@ -104,8 +104,12 @@
         </form>
       </div>
       <div id="offers" class="tab-pane fade">
-        <h3>Menu 2</h3>
-        <p>Some content in menu 2.</p>
+        <form>
+          <div class="form-group">
+            <label id="offer-message" for="special-offers"></label>
+            <input type="text" class="form-control" id="special-offers" disabled>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -141,6 +145,7 @@
               $("#policy-months").val(data.monthsSincePolicyInception);
               $("#reason").val(data.claimReason);
               $("#amount").val(data.totalClaimAmount);
+              $("#special-offers").val(data.message);  
           },
           error: function(xhr) {
               alert(xhr.status);
@@ -196,6 +201,7 @@
             $("#policy-tab").text(data.resourceStrings.policy);
             $("#claims-tab").text(data.resourceStrings.claims);
             $("#offers-tab").text(data.resourceStrings.offers);
+            $("#offer-message").text(data.resourceStrings.offerMessage);
           },
           error: function(xhr) {
               alert(xhr.status);

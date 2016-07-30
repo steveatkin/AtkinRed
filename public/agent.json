@@ -14,5 +14,6 @@
   "effective": "Effective to date:",
   "inception": "Months since policy started:",
   "reason": "Reason:",
-  "amount": "Total claim:"
+  "amount": "Total claim:",
+  "offerMessage": "Just for you:"
 }
