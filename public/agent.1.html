@@ -29,126 +29,103 @@
 <body>
 
   <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1 id="title"></h1>
+      <p id="about"></p>
     </div>
   </div>
-</nav>
 
-<div class="container">
-  <div class="jumbotron">
-    <h1 id="title"></h1>
-    <p id="about"></p>
-  </div>
-</div>
+  <div class="container">
+    <div class="well" id="agent-response"></div>
 
-<div class="container">
-  <div class="well" id="agent-response"></div>
-
-  <div class="input-group">
-    <span class="input-group-btn">
+  <div class="input-group"> 
+      <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="insurance-query-button" onclick="askQuestion()">
       </button>
       </span>
-    <input type="text" class="form-control" id="insurance-query">
+      <input type="text" class="form-control" id="insurance-query">
+    </div>
+  </div>  
+
+  <div class="container">
+    <hr>
   </div>
-</div>
 
-<div class="container">
-  <hr>
-</div>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="active"><a id="policy-tab" data-toggle="tab" href="#policy"></a></li>
+      <li><a id="claims-tab" data-toggle="tab" href="#claims"></a></li>
+      <li><a id="offers-tab" data-toggle="tab" href="#offers"></a></li>
+    </ul>
 
-<div class="container">
-  <div class="panel-group" id="accordion">
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a id="policy-tab" data-toggle="collapse" data-parent="#accordion" href="#policy"></a>
-        </h4>
+    <div class="tab-content">
+      <div id="policy" class="tab-pane fade in active">
+        <form>
+          <div class="form-group">
+            <label id="policy-type-message" for="policy-type"></label>
+            <input type="text" class="form-control" id="policy-type" disabled>
+            <label id="numbers-message" for="number-of-policies"></label>
+            <input type="text" class="form-control" id="number-of-policies" disabled>
+            <label id="coverage-message" for="coverage"></label>
+            <input type="text" class="form-control" id="coverage" disabled>
+            <label id="effective-message" for="effective"></label>
+            <input type="text" class="form-control" id="effective" disabled>
+            <label id="inception-message" for="policy-months"></label>
+            <input type="text" class="form-control" id="policy-months" disabled>
+            <label id="monthly-message" for="monthly-premium"></label>
+            <input type="text" class="form-control" id="monthly-premium" disabled>
+          </div>
+        </form>
       </div>
-      <div id="policy" class="panel-collapse collapse in">
-        <div class="panel-body">
-          <form>
-            <div class="form-group">
-              <label id="policy-type-message" for="policy-type"></label>
-              <input type="text" class="form-control" id="policy-type" disabled>
-              <label id="numbers-message" for="number-of-policies"></label>
-              <input type="text" class="form-control" id="number-of-policies" disabled>
-              <label id="coverage-message" for="coverage"></label>
-              <input type="text" class="form-control" id="coverage" disabled>
-              <label id="effective-message" for="effective"></label>
-              <input type="text" class="form-control" id="effective" disabled>
-              <label id="inception-message" for="policy-months"></label>
-              <input type="text" class="form-control" id="policy-months" disabled>
-              <label id="monthly-message" for="monthly-premium"></label>
-              <input type="text" class="form-control" id="monthly-premium" disabled>
-            </div>
-          </form>
-        </div>
+      <div id="claims" class="tab-pane fade">
+        <form>
+          <div class="form-group">
+            <label id="claim-message" for="months-since-claim"></label>
+            <input type="text" class="form-control" id="months-since-claim" disabled>
+            <label id="claim-reason" for="reason"></label>
+            <input type="text" class="form-control" id="reason" disabled>
+            <label id="claim-amount" for="amount"></label>
+            <input type="text" class="form-control" id="amount" disabled>
+          </div>
+        </form>
       </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a id="claims-tab" data-toggle="collapse" data-parent="#accordion" href="#claims"></a>
-        </h4>
-      </div>
-      <div id="claims" class="panel-collapse collapse in">
-        <div class="panel-body">
-          <form>
-            <div class="form-group">
-              <label id="claim-message" for="months-since-claim"></label>
-              <input type="text" class="form-control" id="months-since-claim" disabled>
-              <label id="claim-reason" for="reason"></label>
-              <input type="text" class="form-control" id="reason" disabled>
-              <label id="claim-amount" for="amount"></label>
-              <input type="text" class="form-control" id="amount" disabled>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a id="offers-tab" data-toggle="collapse" data-parent="#accordion" href="#offers"></a>
-        </h4>
-      </div>
-      <div id="offers" class="panel-collapse collapse in">
-        <div class="panel-body">
-          <form>
-            <div class="form-group">
-              <label id="offer-message" for="special-offers"></label>
-              <input type="text" class="form-control" id="special-offers" disabled>
-            </div>
-          </form>
-        </div>
+      <div id="offers" class="tab-pane fade">
+        <form>
+          <div class="form-group">
+            <label id="offer-message" for="special-offers"></label>
+            <input type="text" class="form-control" id="special-offers" disabled>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</div>
 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-  crossorigin="anonymous"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
 
-<script src="js/api.js"></script>
+  <script src="js/api.js"></script>
 
-<script>
+  <script>
 
       function getCustomer() {
         $.ajax({
@@ -191,13 +168,8 @@
 
     </script>
 
-<script>
+  <script>
       $(document).ready(function () {
-
-        $("#policy.collapse").collapse();
-        $("#claims.collapse").collapse();
-        $("#offers.collapse").collapse();
-
         // Call globalization pipeline and load strings
         var instance = "2db863ea6d4653074ca538dc8ef6c0d6";
         var username = "7aeb978446ec9a0e5918b3d746f458ec";
