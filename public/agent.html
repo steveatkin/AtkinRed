@@ -322,11 +322,22 @@
           if(data.context.policy && data.context.verified === true) {
             console.log("Getting customer: " + data.context.policy);
             getCustomer();
+
+            // see which accordion panel we should display
+            if(data.context.claims) {
+              $("#claims.collapse").collapse('show');
+            }
+            else if(data.context.offers){
+              $("#offers.collapse").collapse('show');
+            }
+            else {
+              $("#policy.collapse").collapse('show');
+            }
           }
 
         };
 
-        Api.sendRequest( '', null );
+        Api.sendRequest('', null );
       });
 
     </script>
