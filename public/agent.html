@@ -166,10 +166,12 @@
   <script src="js/states.json"></script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD6kbd2fgAga9jL-rhuVBAGRA6I04R73E&callback=initMap" async
-    defer></script>
+    defer>
+  </script>
+
 
   <script>
-    function getLatLong(state){
+      function getLatLong(state){
       for(var i = 0; i < stateData.length; i++) {
         if(stateData[i].state == state){
           return {lat: stateData[i].latitude,
@@ -177,10 +179,7 @@
           }
         }
       }
-  </script>  
 
-  <script>
-    
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
@@ -228,6 +227,8 @@
             "client_id": "520dd2ab-feef-41cb-9831-ce69e653af95"
           },
           success: function(data) {
+
+              console.log()
               $("#policy-type").val(data.policyType);
               $("#months-since-claim").val(data.monthsSinceLastClaim);
               $("#number-of-policies").val(data.numberOfPolicies);
@@ -238,19 +239,12 @@
               $("#reason").val(data.claimReason);
               $("#amount").val(data.totalClaimAmount);
               $("#special-offers").val(data.message);  
-
-              
-              //var geo = getLatLong(data.state);
-              //console.log(geo);
-
-              /*
+              var geo = getLatLong(data.state);
               var mapDiv = document.getElementById('map');
               var map = new google.maps.Map(mapDiv, {
-                center: {state.lat, lng: state.lng},
+                center: {lat: geo.lat, lng: geo.lng},
                 zoom: 8
               });
-              */
-
           },
           error: function(xhr) {
               alert(xhr.status);
