@@ -3,8 +3,7 @@
 var Api = (function() {
   var requestPayload;
   var responsePayload;
-  //var messageEndpoint = 'http://conversation-simple-steveatkin-1318.mybluemix.net/api/message';
-  var messageEndpoint = 'http://atkinred.mybluemix.net/api/message';
+  var messageEndpoint = 'https://api.us.apiconnect.ibmcloud.com/atkinusibmcom-dev/production/v1/dialog?client_id=520dd2ab-feef-41cb-9831-ce69e653af95';
 
   // Publicly accessible methods defined
   return {
