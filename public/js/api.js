@@ -26,7 +26,7 @@ var Api = (function() {
   };
 
   // Send a message request to the server
-  function sendRequest(text, context) {
+  function sendRequest(text, context, language) {
 
     // Build request payload
     var payloadToWatson = {};
@@ -37,6 +37,9 @@ var Api = (function() {
     }
     if (context) {
       payloadToWatson.context = context;
+    }
+    if(language) {
+      payloadToWatson.language = language.substring(0,2).toLowerCase();
     }
 
     // Built http request

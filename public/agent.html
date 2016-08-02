@@ -261,7 +261,8 @@
         }
 
         // Send the user message
-        Api.sendRequest($("#insurance-query").val(), context);
+        var userLang = navigator.language || navigator.userLanguage;
+        Api.sendRequest($("#insurance-query").val(), context, userLang);
         $("#insurance-query").val('');
       }
 
@@ -337,7 +338,8 @@
 
         };
 
-        Api.sendRequest('', null );
+        var userLang = navigator.language || navigator.userLanguage;
+        Api.sendRequest('', null, userLang);
       });
 
     </script>
