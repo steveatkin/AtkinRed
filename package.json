@@ -19,7 +19,7 @@
         "node-red-node-swagger": "^0.1",
         "node-red-contrib-openwhisk": "^1.0.5",
         "node-red-node-watson": "^0.4.8",
-        "node-red-node-openwhisk": "^0.1"
+        "node-red-node-openwhisk": "^0.1.1"
     },
     "engines": {
         "node": "0.12.x"
