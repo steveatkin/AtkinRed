@@ -239,7 +239,7 @@
               $("#reason").val(data.claimReason);
               $("#amount").val(data.totalClaimAmount);
               $("#special-offers").val(data.message);  
-              var geo = getLatLong(data.state);
+              var geo = {lat: parseFloat(data.latitude), lng: parseFloat(data.longitude)};
               var mapDiv = document.getElementById('map');
               var map = new google.maps.Map(mapDiv, {
                 center: {lat: geo.lat, lng: geo.lng},
