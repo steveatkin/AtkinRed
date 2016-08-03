@@ -15,5 +15,10 @@
   "inception": "Months since policy started:",
   "reason": "Reason:",
   "amount": "Total claim:",
-  "offerMessage": "Just for you:"
+  "offerMessage": "Just for you:",
+  "vehicleMessage": "Vehicle:",
+  "cityMessage": "City:",
+  "stateMessage": "State:",
+  "familyNameMessage": "Policy holder family name:",
+  "givenNameMessage": "Policy holder given name:"
 }

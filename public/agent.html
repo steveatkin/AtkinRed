@@ -88,6 +88,17 @@
               <div class="panel-body">
                 <form>
                   <div class="form-group">
+                    <label id="family-message" for="family"></label>
+                    <input type="text" class="form-control" id="family" disabled>
+
+                    <label id="given-message" for="given"></label>
+                    <input type="text" class="form-control" id="given" disabled>
+
+
+                    <label id="city-message" for="city"></label>
+                    <input type="text" class="form-control" id="city" disabled>
+                    <label id="state-message" for="state"></label>
+                    <input type="text" class="form-control" id="state" disabled>
                     <label id="policy-type-message" for="policy-type"></label>
                     <input type="text" class="form-control" id="policy-type" disabled>
                     <label id="numbers-message" for="number-of-policies"></label>
@@ -100,6 +111,8 @@
                     <input type="text" class="form-control" id="policy-months" disabled>
                     <label id="monthly-message" for="monthly-premium"></label>
                     <input type="text" class="form-control" id="monthly-premium" disabled>
+                    <label id="vehicle-message" for="vehicle"></label>
+                    <input type="text" class="form-control" id="vehicle" disabled>
                   </div>
                 </form>
               </div>
@@ -163,7 +176,6 @@
     crossorigin="anonymous"></script>
 
   <script src="js/api.js"></script>
-  <script src="js/states.json"></script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD6kbd2fgAga9jL-rhuVBAGRA6I04R73E&callback=initMap" async
     defer>
@@ -171,15 +183,6 @@
 
 
   <script>
-      function getLatLong(state){
-      for(var i = 0; i < stateData.length; i++) {
-        if(stateData[i].state == state){
-          return {lat: stateData[i].latitude,
-                 lng: stateData[i].longitude};
-          }
-        }
-      }
-
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
@@ -231,12 +234,35 @@
               $("#months-since-claim").val(data.monthsSinceLastClaim);
               $("#number-of-policies").val(data.numberOfPolicies);
               $("#coverage").val(data.coverage);
-              $("#effective").val(data.effectiveToDate);
-              $("#monthly-premium").val(data.monthlyPremiumAuto);
+              
+              // If there is no Intl object then use non localized forms
+              var effectiveToDate = new Date(data.effectiveToDate);
+              var formattedDate = effectiveToDate.toString();
+
+              var premium = new Number(data.monthlyPremiumAuto);
+              var formattedPremium = premium.toString();
+
+              var claim = new Number(data.totalClaimAmount);
+              var formattedClaim = claim.toString();
+
+              // localize dates and currency
+              if(typeof Intl != "undefined") {
+                formattedDate = new Intl.DateTimeFormat().format(effectiveToDate);
+                formattedPremium = new Intl.NumberFormat('default',{ style: 'currency', currency: 'USD' }).format(premium);
+                formattedClaim = new Intl.NumberFormat('default',{ style: 'currency', currency: 'USD' }).format(claim);
+              }
+
+              $("#effective").val(formattedDate);
+              $("#monthly-premium").val(formattedPremium);
               $("#policy-months").val(data.monthsSincePolicyInception);
               $("#reason").val(data.claimReason);
-              $("#amount").val(data.totalClaimAmount);
-              $("#special-offers").val(data.message);  
+              $("#amount").val(formattedClaim);
+              $("#special-offers").val(data.message);
+              $("#vehicle").val(data.vehicle);
+              $("#city").val(data.city);
+              $("#state").val(data.state);
+              $("#family").val(data.surname);
+              $("#given").val(data.givenName);  
               var geo = {lat: parseFloat(data.latitude), lng: parseFloat(data.longitude)};
               var mapDiv = document.getElementById('map');
               var map = new google.maps.Map(mapDiv, {
@@ -305,6 +331,11 @@
             $("#claims-tab").text(data.resourceStrings.claims);
             $("#offers-tab").text(data.resourceStrings.offers);
             $("#offer-message").text(data.resourceStrings.offerMessage);
+            $("#vehicle-message").text(data.resourceStrings.vehicleMessage);
+            $("#city-message").text(data.resourceStrings.cityMessage);
+            $("#state-message").text(data.resourceStrings.stateMessage);
+            $("#family-message").text(data.resourceStrings.familyNameMessage);
+            $("#given-message").text(data.resourceStrings.givenNameMessage);
           },
           error: function(xhr) {
               alert(xhr.status);
