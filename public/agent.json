@@ -20,5 +20,6 @@
   "cityMessage": "City:",
   "stateMessage": "State:",
   "familyNameMessage": "Policy holder family name:",
-  "givenNameMessage": "Policy holder given name:"
+  "givenNameMessage": "Policy holder given name:",
+  "weather": "Current weather:"
 }

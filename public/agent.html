@@ -161,6 +161,10 @@
         </div>
       </div>
       <div class="col-sm-4">
+        <div class="form-group">
+          <label id="weather" for="forecast"></label>
+          <textarea class="form-control" rows="5" id="forecast"></textarea>
+        </div>
         <div id="map"></div>
       </div>
     </div>
@@ -270,6 +274,8 @@
                 center: {lat: geo.lat, lng: geo.lng},
                 zoom: 8
               });
+
+              $("#forecast").val(data.weather.wx_phrase);
           },
           error: function(xhr) {
               alert(xhr.status);
@@ -337,6 +343,7 @@
             $("#state-message").text(data.resourceStrings.stateMessage);
             $("#family-message").text(data.resourceStrings.familyNameMessage);
             $("#given-message").text(data.resourceStrings.givenNameMessage);
+            $("#weather").text(data.resourceStrings.weather);
           },
           error: function(xhr) {
               alert(xhr.status);
