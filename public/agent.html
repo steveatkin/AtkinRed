@@ -275,7 +275,7 @@
                 zoom: 8
               });
 
-              $("#forecast").val(data.weather.wx_phrase);
+              $("#forecast").val(data.weather[0].narrative);
           },
           error: function(xhr) {
               alert(xhr.status);
