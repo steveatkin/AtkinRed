@@ -231,6 +231,7 @@
           url: "https://api.us.apiconnect.ibmcloud.com/atkinusibmcom-dev/production/v1/policy",
           data: {
             "customer":  Api.getResponsePayload().context.policy,
+            "language":  (navigator.language || navigator.userLanguage).substring(0,2),
             "client_id": "520dd2ab-feef-41cb-9831-ce69e653af95"
           },
           success: function(data) {
