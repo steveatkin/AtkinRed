@@ -39,7 +39,7 @@ var Api = (function() {
       payloadToWatson.context = context;
     }
     if(language) {
-      payloadToWatson.language = language.substring(0,2).toLowerCase();
+      payloadToWatson.language = language;
     }
 
     // Built http request

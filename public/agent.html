@@ -293,7 +293,7 @@
         }
 
         // Send the user message
-        var userLang = navigator.language || navigator.userLanguage;
+        var userLang = (navigator.language || navigator.userLanguage).substring(0,2).toLowerCase();
         Api.sendRequest($("#insurance-query").val(), context, userLang);
         $("#insurance-query").val('');
       }
@@ -312,7 +312,7 @@
         var username = "7aeb978446ec9a0e5918b3d746f458ec";
         var password = "i361I9qLOlRZQ7/8n0Z8hY5Czqqf8fZn";
         var base = "https://gp-rest.ng.bluemix.net/translate/rest/";
-        var language = navigator.language.substring(0,2);
+        var language = (navigator.language || navigator.userLanguage).substring(0,2).toLowerCase();
         var urlPipeline = base + instance + "/v2/bundles/" + "agent/" + language;
 
         $.ajax({
@@ -376,7 +376,7 @@
 
         };
 
-        var userLang = navigator.language || navigator.userLanguage;
+        var userLang = (navigator.language || navigator.userLanguage).substring(0,2).toLowerCase();
         Api.sendRequest("", null, userLang);
       });
 
