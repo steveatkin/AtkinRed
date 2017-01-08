@@ -1,9 +1,8 @@
-swagger: {
-   "template": {
-     "swagger": "2.0",
-     "info": {
-       "title": "Tolls API",
-       "version": "0.0.1"
-     }
-   }
- }
+adminAuth: {
+    type: "credentials",
+    users: [{
+        username: "steveatkin",
+        password: "sea5327",
+        permissions: "*"
+    }]
+}

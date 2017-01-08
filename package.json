@@ -1,6 +1,6 @@
 {
     "name"         : "node-red-bluemix",
-    "version"      : "0.5.0",
+    "version"      : "0.5.1",
     "dependencies": {
         "when": "~3.x",
         "mongodb": "~1.4.x",
@@ -16,7 +16,6 @@
         "node-red-contrib-bluemix-hdfs":"0.x",
         "node-red-nodes-cf-sqldb-dashdb":"0.x",
         "node-red-contrib-httpauth": "^1.0.12",
-        "node-red-node-swagger": "^0.1.8",
         "node-red-node-watson": "0.x",
         "node-red-node-openwhisk": "0.x"
     },
